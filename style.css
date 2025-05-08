@@ -17,7 +17,10 @@ body {
     font-weight: bold;
   }
   
-  #status-banner {
+  #statusBanner {
+    position: absolute;
+    top: 10px;
+    left: 10px;
     padding: 10px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -27,7 +30,7 @@ body {
   #lastUpdate {
     position: absolute;
     top: 10px;
-    right: 20px;
+    right: 10px;
     font-size: 0.9em;
     color: #555;
   }
@@ -35,6 +38,69 @@ body {
     width: 250px;
     height: 195px;
     background-color: #555;
-    padding: 10px;
     border-radius: 3px;
+    font-family: 'Open sans', sans-serif;
+    font-size: 14px;
+    color: #fff;
+    position: relative;
+  }
+  #currentMode{
+    position: absolute;
+    top: 28px;
+    left: 50px;
+  }
+  #currentSetLengthInput{
+    position: absolute;
+    top: 50px;
+    left: 10px;
+  }
+  #currentStintPlan{
+    position: absolute;
+    top: 70px;
+    left: 10px;
+  }
+  #currentLongpitsLeft{
+    position: absolute;
+    top: 110px;
+    left: 10px;
+  }
+  #currentPitstopsDelta{
+    position: absolute;
+    top: 130px;
+    left: 10px;
+  }
+  #currentWarnings{
+    position: absolute;
+    top: 170px;
+    left: 10px;
+  }
+  #currentLapsToPit{
+    position: absolute;
+    top: 50px;
+    left: 10px;
+  }
+  #currentLapsToPitDelta{
+    position: absolute;
+    top: 50px;
+    left: 130px;
+  }
+  #currentLitersToAdd{
+    position: absolute;
+    top: 70px;
+    left: 10px;
+  }
+  #currentFuelTargetAndCurrent{
+    position: absolute;
+    top: 90px;
+    left: 10px;
+  }
+  #currentNextStop{
+    position: absolute;
+    top: 150px;
+    left: 10px;
+  }
+  #accsmText{
+    position: absolute;
+    top: 10px;
+    left: 95px;
   }

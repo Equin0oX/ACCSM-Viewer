@@ -1,11 +1,12 @@
-const API_URL = "https://implies-plus-township-previews.trycloudflare.com/data";
+const API_URL = "https://conclude-portuguese-dental-cabinet.trycloudflare.com/data";
 const stintsGroup = document.getElementById("stints");
 let lastTime = 0;
 
 // Optional: Create a connection status banner
 const timerBanner = document.getElementById("lastUpdate");
 const statusBanner = document.getElementById("statusBanner");
-document.body.insertBefore(statusBanner, stintsGroup);
+const sendData = document.getElementById("sentData");
+//document.body.insertBefore(statusBanner, stintsGroup);
 
 async function fetchData() {
   try {
@@ -14,7 +15,17 @@ async function fetchData() {
     if (!response.ok) throw new Error("Server returned error");
 
     const result = await response.json();
+    if (result === null) {
+        console.error("Error fetching data");
+        updateStatus(false);
+        stintsGroup.textContent = "Unable to load data.";
+        return;
+    }
+    console.log(result)
+    console.log(result.driverAppdata.currentSetLength);
+    sendData.textContent = JSON.stringify(result, null, 2);
     updateStatus(true);
+    setTextForUI(result.telemetry["Graphics"]["session"], result.driverAppdata);
 
     stintsGroup.innerHTML = "";
 
@@ -65,6 +76,30 @@ function updateStatus(connected) {
     statusBanner.style.color = "#721c24";
   }
 }
+function setTextForUI(sessionType, appdata) {
+    const isPractice = sessionType === 0;
+    const isRace = sessionType === 2;
+  
+    // Show/hide depending on the session
+    setVisibility("currentMode", true, `mode:${appdata.currentMode}`);
+    setVisibility("currentSetLengthInput", isPractice, `${appdata.currentSetLength} race length`);
+    setVisibility("currentStintPlan", isPractice, `${appdata.currentStintPlan}`);
+    setVisibility("currentLongpitsLeft", true, `long pits left: ${appdata.currentLapsToPitDelta}`);
+    setVisibility("currentPitstopsDelta", true, `edit pit cound by: ${appdata.currentPitstopsDelta}`);
+    setVisibility("currentWarnings", true, `${appdata.currentWarnings}`);
+    setVisibility("currentLapsToPit", isRace, `${appdata.currentLapsToPit}`);
+    setVisibility("currentLapsToPitDelta", isRace, `+ ${appdata.currentLapsToPitDelta} laps`);
+    setVisibility("currentLitersToAdd", isRace, `add ${appdata.currentLitersToAdd}l`);
+    setVisibility("currentFuelTargetAndCurrent", isRace, `fuel target <${appdata.currentFuelTargetAndCurrent[0]}l/lap, current ${appdata.currentFuelTargetAndCurrent[1]}`);
+    setVisibility("currentNextStop", isRace, `${appdata.currentNextStop}`);
+  }
+  
+  function setVisibility(id, show, text) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.display = show ? "block" : "none";
+    el.textContent = text;
+  }
 
 setInterval(fetchData, 1000);
 setInterval(updateTimer, 100);
