@@ -31,4 +31,10 @@ body {
     font-size: 0.9em;
     color: #555;
   }
-  
+  #currentDriverTab{
+    width: 250px;
+    height: 195px;
+    background-color: #555;
+    padding: 10px;
+    border-radius: 3px;
+  }
