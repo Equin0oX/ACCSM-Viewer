@@ -2,43 +2,13 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Live JSON Viewer</title>
-  <style>
-    body {
-      font-family: monospace;
-      background: #f4f4f4;
-      padding: 20px;
-    }
-    pre {
-      background: white;
-      padding: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-  </style>
+  <title>Race Strategy</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Live JSON Viewer</h1>
-  <pre id="json-output">Loading...</pre>
+  <h1>Race Strategy</h1>
+  <div id="container">Loading...</div>
 
-  <script>
-    async function fetchData() {
-      try {
-        const response = await fetch("https://suspension-speech-consider-producer.trycloudflare.com/data");
-        const data = await response.json();
-        document.getElementById("json-output").textContent =
-          JSON.stringify(data, null, 2);
-      } catch (err) {
-        document.getElementById("json-output").textContent =
-          "Error fetching data.";
-        console.error(err);
-      }
-    }
-
-    setInterval(fetchData, 1000);
-    fetchData();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
