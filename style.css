@@ -5,6 +5,10 @@ body {
   }
   
   .box {
+    min-width: 100px;
+    background-color: #ccc;
+    flex-shrink: 0;
+
     background: white;
     border: 1px solid #ccc;
     padding: 15px;
@@ -12,10 +16,25 @@ body {
     margin-bottom: 10px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   }
+
+  /*.box{
+    flex-shrink: 0;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 6px;
+  }*/
   
   .label {
     font-weight: bold;
   }
+  #stints{
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap; /* ensures no wrapping */
+    gap: 10px;
+    padding: 10px;
+  }
+
   #driverData{
     margin-bottom: 10px;
     width: 250px;
