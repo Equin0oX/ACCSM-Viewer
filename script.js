@@ -1,4 +1,4 @@
-const API_URL = "https://conclude-portuguese-dental-cabinet.trycloudflare.com/data";
+const API_URL = "https://ones-gabriel-remember-of.trycloudflare.com/data";
 const stintsGroup = document.getElementById("stints");
 let lastTime = 0;
 
@@ -11,8 +11,9 @@ const sendData = document.getElementById("sentData");
 async function fetchData() {
   try {
     const response = await fetch(API_URL, { cache: "no-store" });
-
+    console.log(response);
     if (!response.ok) throw new Error("Server returned error");
+    updateStatus(true);
 
     const result = await response.json();
     if (result === null) {
@@ -24,7 +25,6 @@ async function fetchData() {
     console.log(result)
     console.log(result.driverAppdata.currentSetLength);
     sendData.textContent = JSON.stringify(result, null, 2);
-    updateStatus(true);
     setTextForUI(result.telemetry["Graphics"]["session"], result.driverAppdata);
 
     stintsGroup.innerHTML = "";
