@@ -87,9 +87,15 @@ function setTextForUI(sessionType, appdata) {
     setVisibility("currentLongpitsLeft", true, `long pits left: ${appdata.currentLapsToPitDelta}`);
     setVisibility("currentPitstopsDelta", true, `edit pit cound by: ${appdata.currentPitstopsDelta}`);
     setVisibility("currentWarnings", true, `${appdata.currentWarnings}`);
-    setVisibility("currentLapsToPit", isRace, `${appdata.currentLapsToPit}`);
+    if (appdata.currentStintPlan>0){
+        setVisibility("currentLapsToPit", isRace, `pit in ${appdata.currentLapsToPit} laps`);
+
+    }
+    else {
+        setVisibility("currentLapsToPit", isRace, `finish in ${appdata.currentLapsToPit} laps`);
+    }
     setVisibility("currentLapsToPitDelta", isRace, `+ ${appdata.currentLapsToPitDelta} laps`);
-    setVisibility("currentLitersToAdd", isRace, `add ${appdata.currentLitersToAdd}l`);
+    setVisibility("currentLitersToAdd", isRace, `add ${appdata.currentLitersToAdd}L`);
     setVisibility("currentFuelTargetAndCurrent", isRace, `fuel target <${appdata.currentFuelTargetAndCurrent[0]}l/lap, current ${appdata.currentFuelTargetAndCurrent[1]}`);
     setVisibility("currentNextStop", isRace, `${appdata.currentNextStop}`);
   }
