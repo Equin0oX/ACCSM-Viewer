@@ -1,4 +1,4 @@
-const API_URL = "https://ones-gabriel-remember-of.trycloudflare.com/data";
+const API_URL = "https://builder-largest-get-panama.trycloudflare.com/data";
 const stintsGroup = document.getElementById("stints");
 let lastTime = 0;
 
@@ -12,13 +12,18 @@ async function fetchData() {
   try {
     const response = await fetch(API_URL, { cache: "no-store" });
     console.log(response);
-    if (!response.ok) throw new Error("Server returned error");
-    updateStatus(true);
+    if (!response.ok) {
+      updateStatus(false);
+      throw new Error("Server returned error");
+    }
+    else {
+      updateStatus(true);
+    }
 
     const result = await response.json();
     if (result === null) {
         console.error("Error fetching data");
-        updateStatus(false);
+        //updateStatus(false);
         stintsGroup.textContent = "Unable to load data.";
         return;
     }
@@ -51,7 +56,7 @@ async function fetchData() {
     });
 
   } catch (err) {
-    updateStatus(false);
+    //updateStatus(false);
     stintsGroup.textContent = "Unable to load data.";
     console.error("Fetch error:", err);
   }
