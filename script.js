@@ -24,14 +24,14 @@ async function fetchData() {
     if (result === null) {
         console.error("Error fetching data");
         //updateStatus(false);
-        stintsGroup.textContent = "Unable to load data.";
+        stintsGroup.textContent = "No data sent";
         return;
     }
     console.log(result)
-    console.log(result.driverAppdata.currentSetLength);
+    console.log(result.currentDriversName);
     sendData.textContent = JSON.stringify(result, null, 2);
     setTextForUI(result.telemetry["Graphics"]["session"], result.driverAppdata);
-
+    holder = document.getElementById("driverName").textContent = `${result.currentDriversName}'s shown data`;
     stintsGroup.innerHTML = "";
 
     lastTime = result.lastTime;
